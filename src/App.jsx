@@ -463,7 +463,7 @@ const App = () => {
             </div>
           </div>
         )}
-        {isPlaying && <Fire />}
+        {/* {isPlaying && <Fire />} */}
       </div>
       <style>{`.no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
     </div>
