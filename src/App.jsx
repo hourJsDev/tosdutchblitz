@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Trash2, Trophy, UserPlus, ChevronUp, ChevronDown, Play, Camera, LogOut, AlertTriangle, Calculator, X, RotateCcw, Sparkles, TrendingUp, Angry, Smile } from "lucide-react";
 import Bg from "../public/bg.jpg";
-import Queen from "../public/cham.jpg";
 import logo from "../public/logo.png";
 import Fire from "./Fire";
+import sad1 from "../public/cry/1.webp";
+import sad2 from "../public/cry/2.gif";
+import sad3 from "../public/cry/3.webp";
+import smile1 from "../public/smile/1.gif";
+import smile2 from "../public/smile/2.gif";
+import smile3 from "../public/smile/3.webp";
 /**
  * DUTCH BLITZ SCORE MANAGER (v2.9)
  * Features:
@@ -20,6 +25,8 @@ const App = () => {
   const [newPlayerName, setNewPlayerName] = useState("");
   const [newPlayerImage, setNewPlayerImage] = useState("");
   const [winner, setWinner] = useState(null);
+  const sadList = [sad1, sad2, sad3];
+  const smileList = [smile1, smile2, smile3];
   const action = useRef(false);
 
   // Score Modal State
@@ -171,6 +178,12 @@ const App = () => {
     setPlayers(newPlayers);
   };
 
+  const getRandom0to2 = () => {
+    return Math.floor(Math.random() * 3);
+  };
+
+  console.log(getRandom0to2()); // Outputs 0, 1, or 2
+
   // --- Logic for Leaderboard ---
   const sortedByScore = [...players].sort((a, b) => b.score - a.score);
   const topPlayer = sortedByScore[0];
@@ -183,7 +196,7 @@ const App = () => {
           <div>
             <div className="flex items-center gap-2 mb-1">
               {isPlaying && <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>}
-              <div className="w-[150px]">
+              <div className="w-[100px]">
                 <img className="w-full h-full object-center object-cover" alt="" src={logo} />
               </div>
             </div>
@@ -197,7 +210,7 @@ const App = () => {
             <button
               onClick={startGame}
               disabled={players.length === 0}
-              className="flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 shadow-lg disabled:opacity-50"
+              className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-bold hover:bg-indigo-700 shadow-lg disabled:opacity-50"
             >
               <Play className="w-5 h-5 fill-current" /> Start Game
             </button>
@@ -262,7 +275,7 @@ const App = () => {
         {isPlaying && topPlayer && topPlayer.score !== 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             {/* Top Player Card */}
-            <div className="bg-indigo-600 rounded-2xl p-4 text-white shadow-xl shadow-indigo-100 animate-in slide-in-from-left duration-500">
+            <div className="bg-green-600 rounded-2xl p-4 text-white shadow-xl shadow-indigo-100 animate-in slide-in-from-left duration-500">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-[10px] font-black uppercase tracking-widest opacity-70">Almost Blitzed</span>
                 <Trophy className="w-4 h-4 text-yellow-400 fill-yellow-400" />
@@ -275,6 +288,7 @@ const App = () => {
                     <div className="h-full bg-yellow-400 transition-all duration-700" style={{ width: `${Math.min(100, (topPlayer.score / targetScore) * 100)}%` }} />
                   </div>
                 </div>
+                <img src={smileList[getRandom0to2()]} className="w-12 h-12 rounded-xl object-cover border-2 border-white/20" alt="" />
               </div>
             </div>
 
@@ -293,6 +307,7 @@ const App = () => {
                       <TrendingUp className="w-3 h-3" /> {cheerUpMessages[Math.floor((lowestPlayer.score + players.length) % cheerUpMessages.length)]}
                     </p>
                   </div>
+                  <img src={sadList[getRandom0to2()]} className="w-12 h-12 rounded-xl object-cover border-2 border-white/20" alt="" />
                 </div>
               </div>
             )}
@@ -383,8 +398,8 @@ const App = () => {
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="rounded-2xl w-full  aspect-[4/3] overflow-hidden mb-[10px]">
-                <img className="w-full h-full object-center object-cover" alt="" src={Queen} />
+              <div className="rounded-2xl h-[200px] w-full overflow-hidden mb-[10px]">
+                <img className="w-full h-full object-contain" alt="" src={action.current ? smileList[getRandom0to2()] : sadList[getRandom0to2()]} />
               </div>
               <input
                 ref={scoreInputRef}
@@ -424,7 +439,13 @@ const App = () => {
               </div>
               <h2 className="text-3xl font-black text-slate-900 mb-2 uppercase">Match Over!</h2>
               <img src={winner.image} alt="" className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-slate-50 mb-4" />
-              <p className="text-xl font-bold text-indigo-600 mb-8 uppercase">{String(winner.name)} Blitzed!</p>
+
+              <div className="flex justify-center gap-2 mb-[10px] items-center">
+                <img src={smileList[0]} className="w-12 h-12 rounded-xl object-cover border-2 border-white/20" alt="" />
+                <p className="text-xl font-bold text-indigo-600 uppercase">{String(winner.name)} Blitzed!</p>
+                <img src={smileList[2]} className="w-12 h-12 rounded-xl object-cover border-2 border-white/20" alt="" />
+              </div>
+
               <div className="space-y-3">
                 <button onClick={startGame} className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold text-xl shadow-lg">
                   New Match
