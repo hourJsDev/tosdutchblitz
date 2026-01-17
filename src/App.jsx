@@ -390,7 +390,7 @@ const App = () => {
 
         {/* CALC MODAL */}
         {activeScoringPlayer && (
-          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex pt-[40px] items-center justify-center p-4 z-[60]">
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex pt-[60px] items-center justify-center p-4 z-[60]">
             <div className="bg-white rounded-[2rem] p-8 w-full max-w-sm shadow-2xl">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="font-black text-xl text-slate-900">{activeScoringPlayer.name}</h3>
