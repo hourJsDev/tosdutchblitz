@@ -414,7 +414,7 @@ const App = () => {
                 className="w-full text-4xl font-black p-4 bg-slate-100 rounded-2xl outline-none mb-6"
               />
               <div className="flex justify-end mb-4">
-                <button onClick={() => handleApplyScore(action.current)} className="py-4 w-[100px] rounded-2xl font-bold bg-green-600 text-white shadow-lg">
+                <button onClick={() => handleApplyScore(action.current?.["type"])} className="py-4 w-[100px] rounded-2xl font-bold bg-green-600 text-white shadow-lg">
                   Save
                 </button>
               </div>
