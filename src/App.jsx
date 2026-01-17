@@ -346,7 +346,7 @@ const App = () => {
                     <div className="mt-1">
                       <p className="text-3xl font-black text-slate-900 leading-none">{player.score}</p>
                       {player.history?.length > 0 && (
-                        <div className="mt-2 flex gap-1 overflow-x-auto no-scrollbar">
+                        <div className="mt-2 flex gap-1 flex-wrap">
                           {player.history.map((pt, i) => (
                             <span
                               key={i}
@@ -418,17 +418,6 @@ const App = () => {
                   Save
                 </button>
               </div>
-              {activeScoringPlayer.history?.length > 0 && (
-                <button
-                  onClick={() => {
-                    undoLastScore(activeScoringPlayer.id);
-                    setActiveScoringPlayer(null);
-                  }}
-                  className="w-full py-3 bg-slate-100 text-slate-500 rounded-xl font-bold flex items-center justify-center gap-2"
-                >
-                  <RotateCcw className="w-4 h-4" /> Undo Round (last score)
-                </button>
-              )}
             </div>
           </div>
         )}
