@@ -210,7 +210,7 @@ const App = () => {
             <button
               onClick={startGame}
               disabled={players.length === 0}
-              className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-bold hover:bg-indigo-700 shadow-lg disabled:opacity-50"
+              className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 shadow-lg disabled:opacity-50"
             >
               <Play className="w-5 h-5 fill-current" /> Start Game
             </button>
@@ -231,7 +231,7 @@ const App = () => {
                     key={val}
                     onClick={() => setTargetScore(val)}
                     className={`flex-1 py-3 rounded-xl font-bold border-2 transition-all ${
-                      targetScore === val ? "bg-indigo-50 border-indigo-600 text-indigo-600" : "bg-transparent border-slate-100 text-slate-400"
+                      targetScore === val ? "bg-green-50 border-green-600 text-green-600" : "bg-transparent border-slate-100 text-slate-400"
                     }`}
                   >
                     {val}
@@ -241,7 +241,7 @@ const App = () => {
                   type="number"
                   value={targetScore}
                   onChange={(e) => setTargetScore(e.target.value)}
-                  className="w-24 text-center bg-slate-100 rounded-xl font-bold outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-24 text-center bg-slate-100 rounded-xl font-bold outline-none focus:ring-2 focus:ring-green-500"
                   placeholder="Custom"
                 />
               </div>
@@ -275,7 +275,7 @@ const App = () => {
         {isPlaying && topPlayer && topPlayer.score !== 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             {/* Top Player Card */}
-            <div className="bg-green-600 rounded-2xl p-4 text-white shadow-xl shadow-indigo-100 animate-in slide-in-from-left duration-500">
+            <div className="bg-green-600 rounded-2xl p-4 text-white shadow-xl shadow-green-100 animate-in slide-in-from-left duration-500">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-[10px] font-black uppercase tracking-widest opacity-70">Almost Blitzed</span>
                 <Trophy className="w-4 h-4 text-yellow-400 fill-yellow-400" />
@@ -284,7 +284,7 @@ const App = () => {
                 <img src={topPlayer.image} className="w-12 h-12 rounded-xl object-cover border-2 border-white/20" alt="" />
                 <div className="flex-1 min-w-0">
                   <h3 className="font-bold text-sm truncate">{topPlayer.name}</h3>
-                  <div className="h-2 bg-indigo-900/40 rounded-full mt-2 overflow-hidden">
+                  <div className="h-2 bg-green-900/40 rounded-full mt-2 overflow-hidden">
                     <div className="h-full bg-yellow-400 transition-all duration-700" style={{ width: `${Math.min(100, (topPlayer.score / targetScore) * 100)}%` }} />
                   </div>
                 </div>
@@ -303,7 +303,7 @@ const App = () => {
                   <img src={lowestPlayer.image} className="w-12 h-12 rounded-xl object-cover grayscale opacity-70" alt="" />
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-sm text-slate-800 truncate">{lowestPlayer.name}</h3>
-                    <p className="text-[10px] font-bold text-indigo-500 uppercase mt-1 flex items-center gap-1">
+                    <p className="text-[10px] font-bold text-green-500 uppercase mt-1 flex items-center gap-1">
                       <TrendingUp className="w-3 h-3" /> {cheerUpMessages[Math.floor((lowestPlayer.score + players.length) % cheerUpMessages.length)]}
                     </p>
                   </div>
@@ -390,7 +390,7 @@ const App = () => {
 
         {/* CALC MODAL */}
         {activeScoringPlayer && (
-          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-[60]">
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex pt-[40px] items-center justify-center p-4 z-[60]">
             <div className="bg-white rounded-[2rem] p-8 w-full max-w-sm shadow-2xl">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="font-black text-xl text-slate-900">{activeScoringPlayer.name}</h3>
@@ -442,12 +442,12 @@ const App = () => {
 
               <div className="flex justify-center gap-2 mb-[10px] items-center">
                 <img src={smileList[0]} className="w-12 h-12 rounded-xl object-cover border-2 border-white/20" alt="" />
-                <p className="text-xl font-bold text-indigo-600 uppercase">{String(winner.name)} Blitzed!</p>
+                <p className="text-xl font-bold text-green-600 uppercase">{String(winner.name)} Blitzed!</p>
                 <img src={smileList[2]} className="w-12 h-12 rounded-xl object-cover border-2 border-white/20" alt="" />
               </div>
 
               <div className="space-y-3">
-                <button onClick={startGame} className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold text-xl shadow-lg">
+                <button onClick={startGame} className="w-full bg-green-600 text-white py-4 rounded-2xl font-bold text-xl shadow-lg">
                   New Match
                 </button>
                 <button
