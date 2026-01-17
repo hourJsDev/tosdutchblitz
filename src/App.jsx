@@ -27,7 +27,10 @@ const App = () => {
   const [winner, setWinner] = useState(null);
   const sadList = [sad1, sad2, sad3];
   const smileList = [smile1, smile2, smile3];
-  const action = useRef(false);
+  const action = useRef({
+    type: false,
+    index: 0,
+  });
 
   // Score Modal State
   const [activeScoringPlayer, setActiveScoringPlayer] = useState(null);
@@ -364,7 +367,7 @@ const App = () => {
                     <button
                       onClick={() => {
                         setActiveScoringPlayer(player);
-                        action.current = false;
+                        action.current = { type: false, index: getRandom0to2() };
                       }}
                       className="h-12 w-12 flex items-center justify-center bg-red-100 text-red-600 rounded-xl active:scale-90 transition-all shrink-0"
                     >
@@ -375,7 +378,7 @@ const App = () => {
                     <button
                       onClick={() => {
                         setActiveScoringPlayer(player);
-                        action.current = true;
+                        action.current = { type: true, index: getRandom0to2() };
                       }}
                       className="h-12 w-12 flex items-center justify-center bg-green-100 text-green-600 rounded-xl active:scale-90 transition-all shrink-0"
                     >
@@ -399,7 +402,7 @@ const App = () => {
                 </button>
               </div>
               <div className="rounded-2xl h-[200px] w-full overflow-hidden mb-[10px]">
-                <img className="w-full h-full object-contain" alt="" src={action.current ? smileList[getRandom0to2()] : sadList[getRandom0to2()]} />
+                <img className="w-full h-full object-contain" alt="" src={action.current?.["type"] ? smileList[action.current?.["index"]] : sadList[action.current?.["index"]]} />
               </div>
               <input
                 ref={scoreInputRef}
