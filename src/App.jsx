@@ -397,7 +397,7 @@ const App = () => {
               />
               <div className="flex justify-end mb-4">
                 <button onClick={() => handleApplyScore(action.current)} className="py-4 w-[100px] rounded-2xl font-bold bg-green-600 text-white shadow-lg">
-                  Save 
+                  Save
                 </button>
               </div>
               {activeScoringPlayer.history?.length > 0 && (
@@ -442,7 +442,7 @@ const App = () => {
             </div>
           </div>
         )}
-        {/* <Fire/> */}
+        {isPlaying && <Fire />}
       </div>
       <style>{`.no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
     </div>
