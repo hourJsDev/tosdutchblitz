@@ -185,8 +185,6 @@ const App = () => {
     return Math.floor(Math.random() * 3);
   };
 
-  console.log(getRandom0to2()); // Outputs 0, 1, or 2
-
   // --- Logic for Leaderboard ---
   const sortedByScore = [...players].sort((a, b) => b.score - a.score);
   const topPlayer = sortedByScore[0];
@@ -413,7 +411,18 @@ const App = () => {
                 onChange={(e) => setRoundPoints(e.target.value)}
                 className="w-full text-4xl font-black p-4 bg-slate-100 rounded-2xl outline-none mb-6"
               />
-              <div className="flex justify-end mb-4">
+              <div className="flex justify-end gap-[10px] mb-4">
+                {!!activeScoringPlayer?.history?.length && (
+                  <button
+                    onClick={() => {
+                      undoLastScore(activeScoringPlayer.id);
+                      setActiveScoringPlayer(null);
+                    }}
+                    className="p-4 rounded-2xl font-bold bg-red-600 text-white shadow-lg"
+                  >
+                    Undo ({activeScoringPlayer?.history.at(-1)})
+                  </button>
+                )}
                 <button onClick={() => handleApplyScore(action.current?.["type"])} className="py-4 w-[100px] rounded-2xl font-bold bg-green-600 text-white shadow-lg">
                   Save
                 </button>
